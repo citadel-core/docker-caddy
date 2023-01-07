@@ -1,3 +1,8 @@
-FROM node:16-bullseye-slim
+FROM caddy:2.6.2-builder AS builder
 
-RUN echo "In a repository, actually do something useful here, this is just to allow builds." && touch examplefile
+RUN xcaddy build \
+    --with https://github.com/runcitadel/caddy-runningcitadel
+
+FROM caddy:2.6.2
+
+COPY --from=builder /usr/bin/caddy /usr/bin/caddy

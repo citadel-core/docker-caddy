@@ -1,7 +1,8 @@
 FROM caddy:2.6.2-builder AS builder
 
 RUN xcaddy build \
-    --with github.com/runcitadel/caddy-runningcitadel
+    --with github.com/runcitadel/caddy-runningcitadel \
+    --with github.com/mholt/caddy-l4
 
 FROM caddy:2.6.2
 
